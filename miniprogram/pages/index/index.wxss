@@ -24,3 +24,19 @@
   height: 100%;
   z-index: -1;
 }
+.timetips{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40rpx;
+}
+.timetips-icon{
+  height: 28rpx;
+  width: 36rpx;
+  margin-right: 10rpx;
+}
+.timetips-text{
+  font-size: 30rpx;
+  line-height: 42rpx;
+  opacity: 0.5;
+}
