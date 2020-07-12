@@ -17,8 +17,9 @@ const weatherColorMap = {
 Page({
   data: {
     nowTemp: "",
-    nowWeather: "sunny",
-    nowWeatherBackground: ""
+    nowWeather: "",
+    nowWeatherBackground: "",
+    forecast: []
   },
   getNow(callback){
     wx.request({
@@ -40,6 +41,21 @@ Page({
         wx.setNavigationBarColor({
           frontColor: '#ffffff',
           backgroundColor: weatherColorMap[weather]
+        })
+        // set forecast
+        let forecasts = []
+        let nowHour = new Date().getHours()
+        for (let i = 0; i < 24; i+=3) {
+          forecasts.push({
+            time: (i + nowHour) % 24 + "时",
+            iconPath: "/images/" + result.forecast[i/3].weather + "-icon.png",
+            temp: result.forecast[i/3].temp + "°"
+          }
+          )
+        }
+        forecasts[0].time = "现在"
+        this.setData({
+          forecast: forecasts
         })
       },
       complete(){
