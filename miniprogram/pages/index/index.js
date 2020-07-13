@@ -19,8 +19,17 @@ Page({
     nowTemp: "",
     nowWeather: "",
     nowWeatherBackground: "",
-    hourlyWeather: []
+    hourlyWeather: [],
+    todayTemp: "",
+    todayDate: ""
   },
+  onLoad(){
+    this.getNow()
+  },
+  onPullDownRefresh(){
+    this.getNow(() => {
+      wx.stopPullDownRefresh()
+  })},
   getNow(callback){
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now', //仅为示例，并非真实的接口地址
@@ -32,6 +41,7 @@ Page({
         let result = res.data.result
         this.setNowWeather(result)
         this.setHourlyWeather(result)
+        this.setToday(result)
       },
       complete(){
         callback && callback()
@@ -69,11 +79,13 @@ Page({
       hourlyWeather: hourlyWeather
     })
   },
-  onLoad(){
-    this.getNow()
-  },
-  onPullDownRefresh(){
-    this.getNow(() => {
-      wx.stopPullDownRefresh()
-  })}
+  setToday(result){
+    let date = new Date()
+    this.setData({
+      todayTemp: `${result.today.minTemp}° - ${result.today.maxTemp}°`,
+      todayDate: `${date.getFullYear()} - ${date.getMonth() + 1} - ${date.getDate()} 今天`
+      }
+    )
+  }
+
 })
