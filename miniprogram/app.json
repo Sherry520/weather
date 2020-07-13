@@ -3,6 +3,11 @@
     "pages/index/index",
     "pages/list/list"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取当前位置信息以获取天气信息"
+    }
+  },
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
