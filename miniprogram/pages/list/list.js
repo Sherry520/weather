@@ -6,9 +6,13 @@ Page({
     day: "星期一",
     date: "2020-10-48",
     temp: "15",
-    weatherIcon: "/images/sunny-icon.png"
+    weatherIcon: "/images/sunny-icon.png",
+    city: "广州市"
   },
-  onLoad(){
+  onLoad(option){
+    this.setData({
+      city: option.city
+    })
     this.getWeekWeather()
   }, 
   onPullDownRefresh(){
@@ -18,7 +22,7 @@ Page({
     wx.request({
       url: "https://test-miniprogram.com/api/weather/future",
       data: {
-        city: "广州市",
+        city: this.data.city,
         time: new Date().getTime()
       },
       success: res =>{
