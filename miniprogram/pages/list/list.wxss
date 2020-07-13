@@ -1,0 +1,28 @@
+/* miniprogram/pages/list/list.wxss */
+.list-item{
+  display: flex;
+  align-items: center;
+  height: 150rpx;
+  margin: 0 30rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.day{
+  font-size: 40rpx;
+  line-height: 56rpx;
+  opacity: 0.8;
+}
+.date{
+  font-size: 25rpx;
+  line-height: 35rpx;
+}
+.temp{
+  font-size: 40rpx;
+  line-height: 56rpx;
+  flex-grow: 1;
+  text-align: center;
+}
+.weather-icon{
+  width: 90rpx;
+  height: 90rpx;
+  
+}
