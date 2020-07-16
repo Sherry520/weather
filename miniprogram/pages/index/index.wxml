@@ -13,7 +13,7 @@
   <view class="day-weather" bindtap="onTapDayWeather">
     <view class="day-text">{{todayDate}}</view>
     <view class="temp-text">{{todayTemp}}</view>
-  <image class="arrow-icon" src="/images/arrow.png"></image>
+    <image class="arrow-icon" src="/images/arrow.png"></image>
   </view>
 </view>
 <view class="timetips">

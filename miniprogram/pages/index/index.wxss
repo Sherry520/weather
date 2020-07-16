@@ -94,6 +94,7 @@ line-height: 56rpx;
   line-height: 42rpx;
   text-align: center;
   align-items: center;
+  color: rgba(0, 0, 0, 0.5);
 }
 .location{
   justify-content: center;

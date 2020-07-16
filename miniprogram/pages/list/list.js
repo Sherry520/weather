@@ -10,6 +10,9 @@ Page({
     city: "广州市"
   },
   onLoad(option){
+    console.log('onLoad')
+    console.log('onReady')
+
     this.setData({
       city: option.city
     })
@@ -42,7 +45,7 @@ Page({
           date.setDate(date.getDate() + i)
           weekWeather.push({
             day: dayMap[date.getDay()],
-            date: `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`,
+            date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
             temp: result[i].minTemp + "° - " + result[i].maxTemp + "°",
             weatherIcon: "/images/" + result[i].weather +"-icon.png"
           })
