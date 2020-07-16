@@ -36,28 +36,10 @@ Page({
     locationAuthType: UNPROMPTED
   },
   onLoad(){
-    console.log('onLoad')
-    console.log('onReady')
     this.qqmapsdk = new QQMapWX({
       key: "RGQBZ-TTJRQ-PZ75U-GMSDT-J4WCO-TSBVW"
     });
     this.getNow()
-  },
-  onShow(){
-    console.log('onLoad')
-    console.log('onReady')
-    wx.getSetting({
-      success: res => {
-        let auth = res.authSetting['scope.userLocation']
-        if (auth && this.data.locationAuthType != AUTHORIZED) {
-          this.setData({
-            locationTipsText: AUTHORIZED_TIPS,
-            locationAuthType: AUTHORIZED
-          }),
-          this.getLocation()
-        }
-      }
-    })
   },
   onPullDownRefresh(){
     this.getNow(() => {
@@ -70,7 +52,6 @@ Page({
         city: this.data.city
       },
       success: res => {
-        console.log(res)
         let result = res.data.result
         this.setNowWeather(result)
         this.setHourlyWeather(result)
@@ -126,7 +107,13 @@ Page({
   },
   onTapLocation(){
     if (this.data.locationAuthType === UNAUTHORIZED){
-      wx.openSetting()
+      wx.openSetting({
+        success: res => {
+          let auth = res.authSetting["scope.userLocation"]
+          if(auth)
+            this.getLocation()
+        }
+      })
     }else{
       this.getLocation()
     }
@@ -139,14 +126,12 @@ Page({
           locationAuthType: AUTHORIZED,
           locationTipsText: AUTHORIZED_TIPS
         })
-        console.log(res)
         this.qqmapsdk.reverseGeocoder({
           location: {
             latitude: res.latitude,
             longitude: res.longitude
           },
           success: res => {
-            console.log("get city success")
             let city = res.result.address_component.city
             console.log(city)
             this.setData({
