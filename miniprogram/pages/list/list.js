@@ -10,9 +10,6 @@ Page({
     city: "广州市"
   },
   onLoad(option){
-    console.log('onLoad')
-    console.log('onReady')
-
     this.setData({
       city: option.city
     })
