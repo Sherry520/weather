@@ -47,6 +47,7 @@ Page({
             weatherIcon: "/images/" + result[i].weather +"-icon.png"
           })
         }
+        weekWeather[0].day = "今天"
         this.setData({
           weekWeather: weekWeather
         })
